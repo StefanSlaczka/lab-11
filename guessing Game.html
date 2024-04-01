@@ -12,20 +12,21 @@
       }
     </style>
   </head>
-  <body>
+  <body><py-config> packages = ['numpy'] </py-config>
+    <py-script>
+      import numpy as np
+      selection = np.random.randint(0, 100, 1)[0]
+    </py-script>
+
     <form>
       <label for="guess">Guess: </label><input name="guess" id="guess" />
       <button type="button" id="submit">Click Guess</button>
       <label for="result">Result: </label>
       <div name="result" id="result"></div>
     </form>
-    <py-config> packages = ['numpy'] </py-config>
+    
     <py-script>
-      import numpy as np
       from pyscript import when, Element
-
-      selection = np.random.randint(0, 100, 1)[0]
-
       @when("click", selector="#submit")
       def check_guess():
           user_guess = int(Element("guess").value)
